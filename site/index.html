@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffecad" />
+    <meta name="description" content="Flight requests typed in plain words: what a simple SQL keyword rule makes of them, and what JEV makes of them." />
+    <title>SQL vs JEV: flight requests</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="wordmark" href="#top" aria-label="SQL and JEV, home"><span class="wordmark-mark">↗</span> SQL <span class="wordmark-divider">/</span> JEV</a>
+        <a class="top-link" href="#method">WHAT TO TAKE <span aria-hidden="true">↘</span></a>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="live-dot"></span> SQL VS JEV, 40 FLIGHT REQUESTS</p>
+            <h1 id="page-title">A keyword rule meets<br /><em>“direct would be nice”</em></h1>
+            <p class="hero-deck">People type flight wishes in their own words. Here is what a simple SQL rule and a model called JEV each make of 40 of them, next to my own reading.</p>
+          </div>
+          <div class="hero-index" aria-hidden="true">
+            <span>MADE-UP REQUESTS</span>
+            <strong>01<span>—</span>40</strong>
+            <span>LABELED<br />BY HAND</span>
+          </div>
+        </section>
+
+        <section class="demo" aria-label="Compare SQL and JEV responses">
+          <div class="demo-heading">
+            <div>
+            <p class="eyebrow">PICK A REQUEST</p>
+              <p class="demo-hint">Pick one and compare what the keyword rule catches with how JEV reads it.</p>
+            </div>
+            <span class="counter" id="sample-count">01 <i>/</i> 40</span>
+          </div>
+
+          <div class="sample-picker">
+            <label for="sample-select">SELECT AN EXAMPLE</label>
+            <select id="sample-select" aria-describedby="sample-help">
+              <option value="" selected disabled>Loading examples…</option>
+            </select>
+            <span id="sample-help" class="sample-help">40 requests I labeled by hand · JEV answers are saved, not live</span>
+          </div>
+
+          <div class="question-card">
+            <div class="question-meta"><span>WHAT THE TRAVELLER TYPED</span><span id="request-id">STOPS</span></div>
+            <blockquote id="phrase">“Direct would be nice, but not essential.”</blockquote>
+          </div>
+
+          <div class="compare-grid" aria-live="polite" aria-atomic="false">
+            <article class="answer-card sql-card">
+              <div class="card-topline"><span class="system-label"><span class="system-icon">{ }</span> SQL RULE</span><span class="status-chip" id="sql-status">KEYWORD MATCH</span></div>
+              <div class="answer-value" id="sql-answer">direct_only</div>
+              <p class="answer-gloss" id="sql-gloss">Requires a direct flight</p>
+              <p class="answer-note" id="sql-note">It sees “direct” and makes it a hard requirement. “Not essential” goes unnoticed.</p>
+              <div class="rule-box"><span class="rule-label">THE RULE</span><code id="sql-code">phrase LIKE '%direct%' → direct_only</code></div>
+              <div class="card-foot"><span>EXACT WORDS ONLY</span><span class="foot-mark">01</span></div>
+            </article>
+
+            <article class="answer-card jev-card">
+              <div class="card-topline"><span class="system-label"><span class="system-icon jev-icon">J</span> JEV</span><span class="status-chip status-match" id="jev-status">STRUCTURED ANSWER</span></div>
+              <div class="answer-value" id="jev-answer">connection_ok</div>
+              <p class="answer-gloss" id="jev-gloss">A connection is acceptable</p>
+              <p class="answer-note" id="jev-note">A connection is fine. Direct is a wish here, not a must.</p>
+              <div class="jev-metrics" id="jev-metrics"><span>CONFIDENCE <b>0.99</b></span><span>TYPE <b>choice</b></span></div>
+              <div class="card-foot"><span>WHOLE SENTENCE</span><span class="foot-mark">02</span></div>
+            </article>
+          </div>
+
+          <div class="comparison-result is-different" id="comparison-result" aria-live="polite" aria-atomic="true">
+            <strong id="compare-status">SQL and JEV disagree</strong>
+            <span id="compare-summary">SQL: the rule requires a direct flight. JEV: a connection is acceptable.</span>
+          </div>
+
+          <div class="human-check">
+            <span class="human-check-label"><span class="check-icon">✓</span> MY LABEL</span>
+            <span class="human-answer" id="human-answer">connection_ok</span>
+            <span class="human-gloss" id="human-gloss">A connection is acceptable</span>
+            <span class="human-caption" id="human-caption">My own label</span>
+          </div>
+        </section>
+
+        <section class="takeaway" id="method">
+          <div class="takeaway-label"><span class="eyebrow">WHAT TO TAKE FROM IT</span><span class="takeaway-rule"></span></div>
+          <div class="takeaway-copy">
+            <h2>The rule only knows the words it was given</h2>
+            <p>The SQL rule looks for keywords like “direct” and nothing else. JEV answers from the whole sentence. My label is the reference. The page compares labels and does not search for flights.</p>
+            <div class="pipeline" aria-label="Request compared by SQL, JEV, and a human label">
+              <span>request</span><b>→</b><span>SQL · keyword rule</span><b>+</b><span class="pipeline-active">JEV · meaning</span><b>→</b><span>my label</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="scope-note" aria-label="Scope and data note">
+          <div class="scope-symbol">i</div>
+          <p><strong>Synthetic data, deliberately simple rule.</strong> This is not a benchmark. All 40 requests are made up, the JEV answers were saved earlier, and the SQL rule never touches real flight data.</p>
+        </section>
+      </main>
+
+      <footer class="footer"><span>SQL VS JEV</span><span>A SIDE EXPERIMENT <span class="footer-star">✳</span></span></footer>
+    </div>
+    <script src="./examples.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
